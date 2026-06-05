@@ -399,15 +399,15 @@ class CarlaEnv(gym.Env):
         """手动关闭环境，释放所有资源"""
         logger.info("开始关闭CarlaEnv环境...")
         try:
-            # 先停止传感器监听（必须在 clean_world 之前，否则 actor 已销毁）
-            for attr in ["rgb_sensor", "semantic_sensor", "col_sensor", "lane_sensor"]:
-                sensor = getattr(self, attr, None)
-                if sensor is not None:
-                    try:
-                        if sensor.is_listening:
-                            sensor.stop()
-                    except RuntimeError:
-                        pass  # actor 可能已被 CARLA 端销毁
+            # 停止传感器监听
+            if self.rgb_sensor:
+                self.rgb_sensor.stop()
+            if self.semantic_sensor:
+                self.semantic_sensor.stop()
+            if self.col_sensor:
+                self.col_sensor.stop()
+            if self.lane_sensor:
+                self.lane_sensor.stop()
             # 再清理MatrixWorld资源
             if self.mw:
                 self.mw.clean_world()

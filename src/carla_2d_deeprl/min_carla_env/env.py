@@ -12,6 +12,7 @@ from min_carla_env.matrix_world import MatrixWorld
 from min_carla_env.config import (
     REWARD_CONFIG,
     ACTIONS,
+    CONFIG,  # re-exported for backward compatibility
 )
 
 # 配置日志

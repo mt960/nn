@@ -232,6 +232,7 @@ class CarlaEnv(gym.Env):
         self.crossed_lane_hist = []
         self.hist_wp = None
         self.stuck_count = 0
+        self.update_spectator_follow()  # 重置时立刻设置视角，不等待
 
         try:
             self.mw.clean_world()

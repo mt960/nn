@@ -204,6 +204,7 @@ title: 主页
 
 - [__机械臂自动抓取__](./robot_arm/README.md) - 基于Franka Panda的机械臂自动抓取仿真项目
 
+- [__carla_2d_deeprl__](./carla_2d_deeprl/README.md) - 基于 CARLA 的 2D 深度强化学习自动驾驶环境
 
 
 

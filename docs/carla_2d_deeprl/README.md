@@ -336,7 +336,10 @@ mkdocs~=1.6.0
 ```
 
 ---
+## 参考
+源码目录 [src/carla_2d_deeprl](https://github.com/mt960/nn/tree/main/src/carla_2d_deeprl)
 
+参考仓库 [mcemilg/min-carla-env](https://github.com/mcemilg/min-carla-env)
 ## License
 
 MIT

@@ -59,6 +59,8 @@ title: 主页
 
 [__carla_CAM__](./carla_CAM/README.md) - 使用类激活映射测试卷积神经网络
 
+[__自动驾驶车辆语义分割__](./auto_drive_seg/README.md) - 基于 U-Net + Focal Loss 的 CARLA 街景 8 类语义分割（含数据增强、速度基准、概率热力图、类别频率分析）
+
 [__V2X路侧智能感知__](./edge_intelligence_V2X/README.md) - 基于YOLOv8n的V2X路侧智能感知系统优化与实现
 
 [__目标检测__](./test/object_detection.md) - 目标检测与危险评估
@@ -77,6 +79,8 @@ title: 主页
 [__工程规范优化__](./improve/project.md) - 多场景仿真与控制优化项目
 
 [__人形机器人站立行走__](./mujoco_man/mujoco_manrun.md) -  基于 CPG + PD 的人形机器人稳定站立与行走仿真（MuJoCo）
+
+[__人形机器人SAC强化学习步态优化__](./mujoco_running/running.md) - 基于CPG+PD+SAC残差强化学习的缓步稳定行走仿真
 
 [__setup_tool模块汇报文档__](./setup_tool/report.md) - setup_tool 模块背景、改进内容、运行方式与效果总结
 
@@ -221,7 +225,8 @@ title: 主页
 
 ## 控制  <span id="control"></span>
 
-
+[PID](#pid)
+[__CARLA IMU 数据采集平台__](./carla_imu/carla_imu.md) — CARLA惯性测量单元数据采集与可视化驾驶平台开发汇报文档
 
 [PID](#pid)
 

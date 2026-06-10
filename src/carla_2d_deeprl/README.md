@@ -1,7 +1,5 @@
 # carla_2d_deeprl
 
-[![Docs](https://img.shields.io/badge/docs-mkdocs-blue?style=flat-square)](docs/index.md)
-
 A minimal 2D CARLA environment for deep reinforcement learning research.
 
 ## 项目简介
@@ -27,4 +25,4 @@ mkdocs serve
 # 浏览器打开 http://127.0.0.1:8000
 ```
 
-或者直接查看 [docs/](/docs/carla_2d_deeprl/README.md) 源文件。
+或者直接查看 [/docs/carla_2d_deeprl/README.md](/docs/carla_2d_deeprl/README.md) 源文件。

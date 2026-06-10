@@ -27,4 +27,4 @@ mkdocs serve
 # 浏览器打开 http://127.0.0.1:8000
 ```
 
-或者直接查看 [docs/index.md](docs/index.md) 源文件。
+或者直接查看 [docs/](/docs/carla_2d_deeprl/README.md) 源文件。

@@ -3,53 +3,97 @@
 基于 CARLA 模拟器的极简 2D 深度强化学习自动驾驶环境。
 
 ---
+<table>
+  <tr>
+    <td><a href="https://www.python.org/"><img src="https://img.shields.io/badge/Python-3.10%2B-blue.svg" alt="Python" width="100%"></a></td>
+    <td><a href="https://carla.org/"><img src="https://img.shields.io/badge/CARLA-0.9.16%2B-orange.svg" alt="CARLA" width="100%"></a></td>
+    <td><a href="https://www.gymlibrary.dev/"><img src="https://img.shields.io/badge/Gym-0.17.1-green.svg" alt="Gym" width="100%"></a></td>
+    </a></td>
+  </tr>
+</table>
 
-## 项目简介
-
-carla_2d_deeprl 是一个基于 [CARLA](https://carla.org/) 模拟器实现的轻量级 2D 强化学习自动驾驶环境，提供类 Gym 接口、语义分割俯视图观测和可配置的奖励函数，适合快速验证 DQN 等深度强化学习算法。
 
 ---
 
-## 快速开始
+## 📑 目录
 
-### 环境搭建
+- [项目简介](#项目简介)
+- [核心功能](#核心功能)
+- [使用方法](#使用方法)
+- [架构总览](#架构总览)
+- [观测空间](#观测空间)
+- [动作空间](#动作空间)
+- [奖励函数](#奖励函数)
+- [配置系统](#配置系统)
+- [改进对比](#改进对比)
+- [依赖](#依赖)
+- [参考](#参考)
+
+## 项目简介
+
+carla_2d_deeprl 是一个基于 [CARLA](https://carla.org/) 模拟器实现的轻量级 2D 强化学习自动驾驶环境，提供类 Gym 接口、语义分割俯视图观测和可配置的奖励函数，适合快速验证 DQN 等深度强化学习算法。环境支持基于俯视视角的2D观测（RGB图像或简化语义分割图像），并设计了以车道中心为目标的奖励函数：智能体行驶在车道中心时获得正奖励，偏离车道中心则根据距离获得负奖励。该环境虽未完全兼容OpenAI Gym标准，但遵循Gym式接口设计，可直接用于测试各类基础强化学习算法。
+
+
+---
+## 核心功能
+1. **2D观测输入**：支持RGB图像或简化语义分割的俯视视角观测，可自定义观测画面的宽高尺寸。
+2. **可配置仿真场景**：支持切换不同天气效果，兼容多种城市场景地图。
+3. **训练优化模式**：提供无渲染模式，大幅提升训练效率，减少不必要的性能开销。
+4. **调试辅助功能**：内置调试模式，便于快速验证环境逻辑与算法效果。
+5. **训练加速特性**：提供Fast Mode，专为强化学习训练优化，减少仿真器冗余计算。
+
+## 使用方法
+
+### 1. 环境搭建
 
 ```bash
-# 1. 创建虚拟环境（Python 3.10+）
+# 克隆仓库
+git clone https://github.com/mt960/nn.git
+cd nn/src/carla_2d_deeprl
+
+# 创建虚拟环境
 python -m venv venv
 # Windows
 venv\Scripts\activate
 # Linux/Mac
 source venv/bin/activate
 
-# 2. 安装依赖
+# 安装依赖
 pip install -r requirements.txt
-
-# 3. 启动 Carla 服务器（0.9.16 版本）
-# Windows: 双击 CarlaUE4.exe
-# Linux:   ./CarlaUE4.sh
 ```
 
-### 运行演示
+### 2. 启动 CARLA
+
+下载 [CARLA 0.9.16](https://github.com/carla-simulator/carla/releases/tag/0.9.16) 并启动：
+
+```bash
+# Windows
+CarlaUE4.exe
+
+# Linux
+./CarlaUE4.sh
+```
+
+### 3. 运行演示
 
 ```bash
 # 快速测试环境（直行 5 个 episode）
 python run.py
 
-# 运行自动化测试
-python main.py test
-
-# 运行预训练模型演示（需训练后）
+# 运行预训练模型演示
 python main.py demo
 
 # 训练新模型
 python main.py train
+
+# 运行自动化测试
+python main.py test
 ```
 
 ---
 
 ## 架构总览
-![带标题的图片](images/img.png "架构总览"){: width="480" }
+<img src="images/img.png" alt="架构总览" title="架构总览" width="480">
 
 
 
@@ -68,7 +112,7 @@ python main.py train
 环境提供 **2D 俯视视角**的观测图像，支持两种模式：
 
 ### 语义分割模式（默认，channels=1）
-![带标题的图片](images/s.png "语义分割模式")
+<img src="images/s.png" alt="语义分割模式" title="语义分割模式" width="480">
 
 
 将 CARLA 的 13 类语义标签映射为 6 类简化标签：
@@ -85,8 +129,11 @@ python main.py train
 
 ### RGB 模式（可选，channels=3）
 
+<img src="images/i.png" alt="RGB 模式" title="RGB 模式" width="480">
+
 原始的 CARLA RGB 相机图像。
-![带标题的图片](images/i.png "RGB模式")
+
+
 ### 参数配置
 
 ```python
@@ -253,53 +300,7 @@ RENDER_CONFIG = {
 
 ---
 
-## 使用方法
 
-### 1. 环境搭建
-
-```bash
-# 克隆仓库
-git clone https://github.com/mt960/nn.git
-cd nn/src/carla_2d_deeprl
-
-# 创建虚拟环境
-python -m venv venv
-# Windows
-venv\Scripts\activate
-# Linux/Mac
-source venv/bin/activate
-
-# 安装依赖
-pip install -r requirements.txt
-```
-
-### 2. 启动 CARLA
-
-下载 [CARLA 0.9.16](https://github.com/carla-simulator/carla/releases/tag/0.9.16) 并启动：
-
-```bash
-# Windows
-CarlaUE4.exe
-
-# Linux
-./CarlaUE4.sh
-```
-
-### 3. 运行演示
-
-```bash
-# 快速测试环境（直行 5 个 episode）
-python run.py
-
-# 运行预训练模型演示
-python main.py demo
-
-# 训练新模型
-python main.py train
-
-# 运行自动化测试
-python main.py test
-```
 
 ---
 

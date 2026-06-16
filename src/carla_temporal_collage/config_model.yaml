@@ -1,0 +1,4 @@
+model:
+  name: temporal_collage
+  device: cuda
+  pretrained: True
